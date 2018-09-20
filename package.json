@@ -7,7 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "Shocke-io"
+    "Socket-io",
+    "Node.js",
+    "Express.js",
+    "Bootstrap3",
+    "JQuery"
   ],
   "author": "Victor_AlonsoCM",
   "license": "MIT",
