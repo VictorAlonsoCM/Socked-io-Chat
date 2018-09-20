@@ -65,7 +65,7 @@
     var $userForm = $('#userForm');
     var $username = $('#username');
     var $users = $('#users');
-
+  
     $messageForm.submit((e) => {
       e.preventDefault();
       socket.emit('send message', $message.val());
@@ -84,13 +84,14 @@
           $messageFormArea.show();
         }
       });
+      socket.emit('login', $username.val());
       $username.val('');
     });
 
     socket.on('get users', (data) => {
       var html = '';
       for(let i = 0; i < data.length; i++){
-        html += '<li class="list-group-item">'+data[i]+'</li>';
+        html += `<li class="list-group-item"><a href=${data[i]}>${data[i]}</a></li>`;
       }
       $users.html(html);
     });
@@ -102,6 +103,12 @@
         chat2 += '<div class="well">'+'<strong>'+data[i].user+': </strong>'+data[i].msg+'</div>';
       }
       $chat.html(chat2);
+    });
+
+    socket.on('private', (data) =>{
+
+        //$chat.append('<div class="well">'+'<strong>'+data[i].user+': </strong>'+data[i].msg+'</div>');
+        $chat.append('<div class="well">'+'<strong>'+data.user+': </strong>'+data.msg+'</div>');
     });
 
   });
